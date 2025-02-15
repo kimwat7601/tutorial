@@ -1,0 +1,50 @@
+//////////////////////////
+// Style Sass Setting File
+// Author: HS Syoka
+// Date: 22.04.09
+//////////////////////////
+
+// Import
+@use "global" as global;
+
+.pageTitle {
+    text-align: center;
+    font-size: 24px;
+    span {
+        display: block;
+        font-size: 36px;
+    }
+}
+.counterWrap {
+    padding: 50px 0;
+    text-align: center;
+    span {
+        display: inline-block;
+        width: 100px;
+        // padding: 10px;
+        border: #CCC solid 1px;
+        margin-right: 10px;
+        height: 30px;
+        line-height: 30px;
+        vertical-align: middle;
+        &.fcred {
+            color: red;
+        }
+        &.fcgreen {
+            color: green;
+        }
+    }
+    button {
+        height: 30px;
+        line-height: 1px;
+        margin: 0 5px;
+    }
+}
+.userInputbox {
+    text-align: center;
+    input[type="number"] {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+    }
+}

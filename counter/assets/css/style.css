@@ -1,0 +1,42 @@
+.pageTitle {
+  text-align: center;
+  font-size: 24px;
+}
+.pageTitle span {
+  display: block;
+  font-size: 36px;
+}
+
+.counterWrap {
+  padding: 50px 0;
+  text-align: center;
+}
+.counterWrap span {
+  display: inline-block;
+  width: 100px;
+  border: #CCC solid 1px;
+  margin-right: 10px;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+}
+.counterWrap span.fcred {
+  color: red;
+}
+.counterWrap span.fcgreen {
+  color: green;
+}
+.counterWrap button {
+  height: 30px;
+  line-height: 1px;
+  margin: 0 5px;
+}
+
+.userInputbox {
+  text-align: center;
+}
+.userInputbox input[type=number] {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */
