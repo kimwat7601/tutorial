@@ -44,11 +44,21 @@ if(userAgent.indexOf('msie') != -1 || userAgent.indexOf('trident') != -1) {
 /*--------------------------------
     Variable Setting
 --------------------------------*/
+// DOM
 const $countertxt = document.getElementById('countertxt');
 const $plus = document.getElementById('plus');
 const $minus = document.getElementById('minus');
 const $reset = document.getElementById('reset');
 const $includenum = document.getElementById('includenum');
+
+// Setting
+const underClass = 'fcred';
+const overClass = 'fcgreen';
+const underClassNum = 0;
+const overClassNum = 10;
+const minNum = -30;
+const maxNum = 30;
+
 // console.log($countertxt);
 
 let counterNum = 0;
@@ -63,55 +73,67 @@ if(localStorage.ttrlCounterNum){
 //     counterNum = localStorage.getItem('ttrl_counter_num');
 // }
 let incNum = 1;
-
 $countertxt.innerText = counterNum;
 
+// 
+function numberChange(orgnum, inctype, incNum = 1, minnum = -Infinity, maxnum = Infinity){
+    let resultNum = 0;
+    if(inctype === 'plus'){
+        resultNum = orgnum + incNum;  
+    } else if(inctype === 'minus') {
+        resultNum = orgnum - incNum;  
+    }
+    if(resultNum < minnum) {
+        resultNum = minnum;
+    }
+    if(resultNum > maxnum) {
+        resultNum = maxnum;
+    }
+    return resultNum;
+}
+
+function classChange(minClassName = '', maxClassName = '',  minnum = -Infinity, maxnum = Infinity){
+    if(counterNum <= minnum) {
+        $countertxt.classList.add(minClassName);
+    } else {
+        $countertxt.classList.remove(minClassName);
+    }
+    if(counterNum >= maxnum) {
+        $countertxt.classList.add(maxClassName);
+    } else {
+        $countertxt.classList.remove(maxClassName);
+    }
+}
+
+//「+」ボタンを押した時
 $plus.addEventListener(_click, () => {
     if($includenum.value != ''){
         incNum = Number($includenum.value);
     };
     // console.log(incNum);
-    counterNum += incNum;
+    counterNum = numberChange(counterNum, 'plus', incNum, minNum, maxNum);
     $countertxt.innerText = counterNum;
-    if(counterNum <= 0) {
-        $countertxt.classList.add('fcred');
-    } else {
-        $countertxt.classList.remove('fcred');
-    }
-    if(counterNum >= 10) {
-        $countertxt.classList.add('fcgreen');
-    } else {
-        $countertxt.classList.remove('fcgreen');
-    }
+    classChange(underClass, overClass, underClassNum, overClassNum);
     localStorage.ttrlCounterNum = counterNum;
-    // localStorage.setItem('ttrl_counter_num', counterNum);
-    // if(counterNum < 10000) {
-    // }
 });
+
+//「-」ボタンを押した時
 $minus.addEventListener(_click, () => {
     if($includenum.value != ''){
         incNum = Number($includenum.value);
     };
-    counterNum -= incNum;
+    counterNum = numberChange(counterNum, 'minus', incNum, minNum, maxNum);
     $countertxt.innerText = counterNum;
-    if(counterNum <= 0) {
-        $countertxt.classList.add('fcred');
-    } else {
-        $countertxt.classList.remove('fcred');
-    }
-    if(counterNum >= 10) {
-        $countertxt.classList.add('fcgreen');
-    } else {
-        $countertxt.classList.remove('fcgreen');
-    }
+    classChange(underClass, overClass, underClassNum, overClassNum);
     localStorage.ttrlCounterNum = counterNum;
-    // localStorage.setItem('ttrl_counter_num', counterNum);
-    // if(counterNum > -10000) {
-    // }
 });
+
+//リセットボタンを押した時
 $reset.addEventListener(_click, () => {
     counterNum = 0;
     $countertxt.innerText = counterNum;
     localStorage.removeItem('ttrlCounterNum');
     //localStorage.removeItem('ttrl_counter_num');
 });
+
+
