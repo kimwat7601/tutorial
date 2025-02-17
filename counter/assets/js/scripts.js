@@ -45,95 +45,75 @@ if(userAgent.indexOf('msie') != -1 || userAgent.indexOf('trident') != -1) {
     Variable Setting
 --------------------------------*/
 // DOM
-const $countertxt = document.getElementById('countertxt');
-const $plus = document.getElementById('plus');
-const $minus = document.getElementById('minus');
-const $reset = document.getElementById('reset');
-const $includenum = document.getElementById('includenum');
+const ElCounterTxt = document.getElementById('countertxt');
+const ElPlus = document.getElementById('plus');
+const ElMinus = document.getElementById('minus');
+const ElReset = document.getElementById('reset');
+const ElIncludenum = document.getElementById('includenum');
 
 // Setting
-const underClass = 'fcred';
-const overClass = 'fcgreen';
+const underClassName = 'fcred';
+const overClassName = 'fcgreen';
 const underClassNum = 0;
 const overClassNum = 10;
 const minNum = -30;
 const maxNum = 30;
 
-// console.log($countertxt);
+// console.log(ElCounterTxt);
 
-let counterNum = 0;
-console.log(localStorage.ttrlCounterNum);
-if(localStorage.ttrlCounterNum){
-    counterNum = Number(localStorage.ttrlCounterNum);
+// カウンターナンバー初期化（ローカルストレージに保持されていたら表示）
+let counterNum = localStorage.getItem('ttrlCounterNum') ? Number(localStorage.getItem('ttrlCounterNum')) : 0;
+updateClass(counterNum);
+
+ElCounterTxt.innerText = counterNum;
+
+/**
+ * 数値を増減する関数
+ * @param {number} orgnum 元の数値
+ * @param {boolean} isPlus プラスかマイナスか。Trueならプラス
+ * @param {number} incNum 増減する値。デフォルトは1
+ * @param {number} minnum 最小値
+ * @param {number} maxnum 最大値
+ * @returns {number} 増減後の数値を返す
+ */
+function numberChange(orgnum, isPlus, incNum, minnum, maxnum){
+    let resultNum = isPlus ? orgnum + incNum : orgnum - incNum;
+    resultNum = Math.max(resultNum, minnum);
+    resultNum = Math.min(resultNum, maxnum);
+    return Math.min(Math.max(resultNum, minnum), maxnum);
 }
-// console.log(localStorage.saveKey);
-
-// console.log(localStorage.getItem('ttrl_counter_num'));
-// if(localStorage.getItem('ttrl_counter_num')){
-//     counterNum = localStorage.getItem('ttrl_counter_num');
-// }
-let incNum = 1;
-$countertxt.innerText = counterNum;
-
-// 
-function numberChange(orgnum, inctype, incNum = 1, minnum = -Infinity, maxnum = Infinity){
-    let resultNum = 0;
-    if(inctype === 'plus'){
-        resultNum = orgnum + incNum;  
-    } else if(inctype === 'minus') {
-        resultNum = orgnum - incNum;  
-    }
-    if(resultNum < minnum) {
-        resultNum = minnum;
-    }
-    if(resultNum > maxnum) {
-        resultNum = maxnum;
-    }
-    return resultNum;
+/**
+ * 数値でクラスを付与する関数
+ * @param {number} num クラスを付与する数値 
+ */
+function updateClass(num){
+    ElCounterTxt.classList.toggle(underClassName, num <= underClassNum);
+    ElCounterTxt.classList.toggle(overClassName, num >= overClassNum);
 }
 
-function classChange(minClassName = '', maxClassName = '',  minnum = -Infinity, maxnum = Infinity){
-    if(counterNum <= minnum) {
-        $countertxt.classList.add(minClassName);
-    } else {
-        $countertxt.classList.remove(minClassName);
-    }
-    if(counterNum >= maxnum) {
-        $countertxt.classList.add(maxClassName);
-    } else {
-        $countertxt.classList.remove(maxClassName);
-    }
+/**
+ * プラス、マイナスボタンを押すと数値が変わる関数
+ * @param {boolean} isPlus プラスかマイナスか。Trueならプラス
+ */
+function updateCounter(isPlus) {
+    let incNum = ElIncludenum.value ? Number(ElIncludenum.value) : 1;
+    counterNum = numberChange(counterNum, isPlus, incNum, minNum, maxNum);
+    ElCounterTxt.innerText = counterNum;
+    updateClass(counterNum);
+    localStorage.setItem('ttrlCounterNum', counterNum);
 }
 
 //「+」ボタンを押した時
-$plus.addEventListener(_click, () => {
-    if($includenum.value != ''){
-        incNum = Number($includenum.value);
-    };
-    // console.log(incNum);
-    counterNum = numberChange(counterNum, 'plus', incNum, minNum, maxNum);
-    $countertxt.innerText = counterNum;
-    classChange(underClass, overClass, underClassNum, overClassNum);
-    localStorage.ttrlCounterNum = counterNum;
-});
+ElPlus.addEventListener(_click, () => updateCounter(true));
 
 //「-」ボタンを押した時
-$minus.addEventListener(_click, () => {
-    if($includenum.value != ''){
-        incNum = Number($includenum.value);
-    };
-    counterNum = numberChange(counterNum, 'minus', incNum, minNum, maxNum);
-    $countertxt.innerText = counterNum;
-    classChange(underClass, overClass, underClassNum, overClassNum);
-    localStorage.ttrlCounterNum = counterNum;
-});
+ElMinus.addEventListener(_click, () => updateCounter(false));
 
 //リセットボタンを押した時
-$reset.addEventListener(_click, () => {
+ElReset.addEventListener(_click, () => {
     counterNum = 0;
-    $countertxt.innerText = counterNum;
+    ElCounterTxt.innerText = counterNum;
     localStorage.removeItem('ttrlCounterNum');
-    //localStorage.removeItem('ttrl_counter_num');
 });
 
 
