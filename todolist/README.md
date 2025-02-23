@@ -1,4 +1,4 @@
-# counter
+# TodoList
 学習アプリ２．ToDoリストアプリ
 
 ChatGPTから提案された課題は、下記の通り。
