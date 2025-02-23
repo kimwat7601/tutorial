@@ -1,0 +1,63 @@
+//////////////////////////
+// Setting Sass Setting File
+// Author: HS Syoka
+// Date: 22.04.09
+//////////////////////////
+
+//-----------------------------------
+// Variable Setting
+//-----------------------------------
+
+// BACKGROUND
+//$BG_ALL: #FFF !default;
+$BG_CLR_WHITE: #FFF !default;
+$BG_CLR_BLACK: #000 !default;
+$BG_CLR_GLEY: #BEBEBE !default;
+$BG_CLR_GB: #333 !default;
+$BG_CLR_YELLOW: #B69826 !default;
+$BG_CLR_PERPLE: #6054D9 !default;
+$BG_CLR_RED: #DC0800 !default;
+$BG_BTN_AMAZON: #F0C14D !default;
+$BG_BTN_BOOTH: #FC4D50 !default;
+$BG_BTN_TORA: #FFA500 !default;
+$BG_BTN_MELON: #338A41 !default;
+$BG_BTN_BASE: #333 !default;
+$BG_BTN_CONOS: #FF6600 !default;
+$BG_BTN_QUAQOO: #3841AE !default;
+$BG_CLR_GRAY_100: #FFFFFF !default;
+
+// BREAKPOINT
+$BP_PC: 1600px !default;
+//$BP_PC: 1380px !default;
+$BP_PCN: 1280px !default;
+$BP_TB: 960px !default;
+$BP_SP: 767px !default;
+$BP_SPN: 599px !default;
+
+// TEXT COLOR
+$TXT_COLOR_GREY000: #000 !default;
+$TXT_COLOR_GREY020: #333 !default;
+$TXT_COLOR_GREY080: #CCC !default;
+$TXT_COLOR_GREY100: #FFF !default;
+
+//LINK COLOR
+$LINK-COLOR_GREY100: #FFF !default;
+
+// BRAND COLOR
+$TW_COLOR: #1DA1F2 !default;
+$X_COLOR: #0f1419 !default;
+$LINE_COLOR: #06C755 !default;
+$FB_COLOR: #1DA1F2 !default;
+$YT_COLOR: #DA1725 !default;
+$NOTE_COLOR: #41C9B4 !default;
+$PIXIV_COLOR: rgb(255, 187, 40) !default;
+$AMAZON_COLOR: #F0C14D !default;
+$BOOTH_COLOR: #FC4D50 !default;
+
+// FONT
+$FONT_FAMILY: 'Noto Serif JP',Hiragino Mincho ProN,'ヒラギノ明朝 ProN',Hiragino Mincho Pro,'ヒラギノ明朝 Pro','游明朝','MS明朝','メイリオ', Meiryo, Osaka ,serif;
+
+
+// Header Size
+//$HEADH_PC_init: 100px !default;
+//$HEADH_PC: 88px !default;

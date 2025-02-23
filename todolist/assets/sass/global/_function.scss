@@ -1,0 +1,78 @@
+//////////////////////////
+// Mixin Sass Setting File
+// Author: HS Syoka
+// Date: 22.04.09
+//////////////////////////
+
+@use "sass:math";
+
+// Centering
+@mixin center($direction) {
+	position: absolute;
+	@if $direction==xy {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	@else if $direction==x {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	@else if $direction==y {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+// Media Queries
+@mixin max-screen($breakPoint) {
+    @media screen and (max-width: $breakPoint) {
+        @content;
+    }
+}
+@mixin min-screen($breakPoint) {
+    @media print, screen and (min-width: ($breakPoint + 1)) {
+        @content;
+    }
+}
+@mixin screen($breakPoint_min, $breakPoint_max) {
+    @media screen and (min-width: ($breakPoint_min + 1)) and (max-width: $breakPoint_max) {
+        @content;
+    }
+}
+
+// Triangle
+@mixin triangle($direction, $width, $height, $color){
+	width: 0;
+	height: 0;
+	border-style: solid;
+	$valWidth: $width / 2;
+	$valHeight: $height / 2;
+	@if ($direction == top) {
+		border-width: 0 $valWidth $height $valWidth;
+		border-color: transparent transparent $color transparent;
+	} @else if ($direction == left) {
+		border-width: $valHeight $width $valHeight 0;
+		border-color: transparent $color transparent transparent;
+	} @else if ($direction == right) {
+		border-width: $valHeight 0 $valHeight $width;
+		border-color: transparent transparent transparent $color;
+	} @else if ($direction == bottom) {
+		border-width: $height $valWidth 0 $valWidth;
+		border-color: $color transparent transparent transparent;
+	}
+}
+
+// Clear Fix
+@mixin cf {
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
+
+// Font Size
+@mixin fs($size: 16) {
+	font-size: calc($size / 16)+ rem ;
+}
