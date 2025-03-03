@@ -55,73 +55,10 @@ const elTodoinputtext = document.querySelector('#todoinputtext');
 const elEntrybtn = document.querySelector('#entrybtn');
 const elTodolistListWrap = document.querySelector('#todolistListWrap');
 
-// ローカルストレージをオブジェクトに格納するための汎用クラス
-class MyStorage {
-    // アプリ名
-    #app;
-    // 利用するストレージの種類（ローカルストレージ）
-    #storage = localStorage;
-    // ストレージから読み込んだオブジェクト
-    #data;
-
-    constructor(app) {
-        this.#app = app;
-        this.#data = JSON.parse(this.#storage[this.#app] || '{}');
-    }
-
-    // 指定されたキーで値を取得
-    getItem(key) {
-        return this.#data[key];
-    }
-
-    // 指定されたキー/値でオブジェクトを書き換え
-    setItem(key, value) {
-        this.#data[key] = value;
-    }
-
-    // MyStorageオブジェクトの内容をストレージに保存
-    save() {
-        this.#storage[this.#app] = JSON.stringify(this.#data);
-    }
-}
-
 // ローカルストレージのデータ（Json形式に変換）を初期データに格納
-// let todolistSaveData;
-// try{
-//     todolistSaveData = JSON.parse(localStorage.getItem('todolistData')) || {datas: [], currentId: 0};
-// } catch(e) {
-//     console.log(e.message);
-//     todolistSaveData = {datas: [], currentId: 0};
-// }
-
-// const todolistSaveData = JSON.parse(localStorage.getItem('todolistData'));
-let storage = new MyStorage('appTodoList');
-
-let objTodoListDatas;
-let idCounterNum;
-
-/**
- * ローカルストレージ保存用（JSON形式を文字列で保存）
- * @param {object} appname ストレージに保存するアプリ名
- */
-function lsDataSaveAndGet(){
-    const savedata = storage.getItem('todolistData');
-    console.log(savedata);
-    if(savedata){
-        objTodoListDatas = savedata.datas;
-        idCounterNum = savedata.currentId;
-    } else {
-        objTodoListDatas = [];
-        idCounterNum = 0;
-    }
-
-    const lsObj = {
-        datas: objTodoListDatas,
-        currentId: idCounterNum
-    };
-    storage.setItem('todolistData', lsObj);
-    storage.save();
-}
+const todolistSaveData = JSON.parse(localStorage.getItem('todolistData'));
+let objTodoListDatas = localStorage.getItem('todolistData') ? todolistSaveData.datas : [];
+let idCounterNum = localStorage.getItem('todolistData') ? todolistSaveData.currentId : 0;
 
 // データが存在する時用のリストボックス
 const elTodolist = document.createElement('ul');
@@ -150,44 +87,6 @@ function entryTodoDatas(inputTxt, datas){
 }
 
 /**
- * document.createElement()のヘルパー関数
- * @param {string} tag HTMLタグ
- * @param {object} option 属性を追加するオプション（イベントリスナー追加にも対応）
- * @param  {...any} children タグに格納する子要素
- */
-function createElement(tag, options = {}, ...children){
-    const el = document.createElement(tag);
-
-    // プロパティをセット
-    Object.entries(options).forEach(([key, value]) => {
-        console.log(value);
-        if(key.startsWith('on')){
-            // イベントリスナーを追加（例：onClick -> click）
-            el.addEventListener(key.slice(2).toLowerCase(), value);
-        } else if(key === 'class') {
-            el.classList.add(...value.split(' '));
-        } else if(key === 'dataset' && typeof value === 'object') {
-            Object.entries(value).forEach(([dataKey, dataValue]) => {
-                el.dataset[dataKey] = dataValue;
-            });
-        } else {
-            el[key] = value;
-        }
-    });
-
-    // 子要素を追加
-    children.forEach(child => {
-        if(typeof child == 'string') {
-            el.appendChild(document.createTextNode(child));
-        } else if(child instanceof Node) {
-            el.appendChild(child);
-        };
-    });
-
-    return el;
-}
-
-/**
  * リストノード生成関数
  * @param {element} checkBox タスク完了用チェックボックス
  * @param {element} btnDelete タスク削除用ボタン
@@ -198,33 +97,24 @@ function createElement(tag, options = {}, ...children){
  */
 
 function listItemNodeCreate(id, todoTxt, status){
-    const elTodolistItem = createElement(
-        'li',
-        {class: 'todolist__item', dataset: {id: id}},
-        createElement('span',{class:'todotext-wrap'},
-            createElement('input', {type: 'checkbox', class: 'todo-checkBox', checked: status}),
-            createElement('span', {class: 'todo-text'}, todoTxt)
-        ),
-        createElement('button', {class: 'btn-delete'}, '削除')
-    );
-    // const elTodolistItem = document.createElement('li');
-    // elTodolistItem.classList.add('todolist__item');
-    // elTodolistItem.dataset.id = id;
-    // const elTodotextWrap = document.createElement('span');
-    // elTodotextWrap.classList.add('todotext-wrap');
-    // const checkBox = document.createElement('input');
-    // checkBox.type = 'checkbox';
-    // checkBox.classList.add('todo-check');
-    // checkBox.checked = status ? 'checked' : '';
-    // const elTodoText = document.createElement('span');
-    // elTodoText.classList.add('todo-text');
-    // elTodoText.innerText = todoTxt;
-    // const btnDelete = document.createElement('button');
-    // btnDelete.type = 'button';
-    // btnDelete.classList.add('btn-delete');
-    // btnDelete.innerText = '削除';
-    // elTodotextWrap.append(checkBox, elTodoText);
-    // elTodolistItem.append(elTodotextWrap, btnDelete);
+    const elTodolistItem = document.createElement('li');
+    elTodolistItem.classList.add('todolist__item');
+    elTodolistItem.dataset.id = id;
+    const elTodotextWrap = document.createElement('span');
+    elTodotextWrap.classList.add('todotext-wrap');
+    const checkBox = document.createElement('input');
+    checkBox.type = 'checkbox';
+    checkBox.classList.add('todo-check');
+    checkBox.checked = status ? 'checked' : '';
+    const elTodoText = document.createElement('span');
+    elTodoText.classList.add('todo-text');
+    elTodoText.innerText = todoTxt;
+    const btnDelete = document.createElement('button');
+    btnDelete.type = 'button';
+    btnDelete.classList.add('btn-delete');
+    btnDelete.innerText = '削除';
+    elTodotextWrap.append(checkBox, elTodoText);
+    elTodolistItem.append(elTodotextWrap, btnDelete);
     return elTodolistItem;
 }
 
@@ -245,10 +135,21 @@ function updateList (listObjArray){
 }
 
 /**
+ * ローカルストレージ保存用（Json形式を文字列で保存）
+ * @param {object} data ストレージ保存データ
+ */
+function lsDataSave (data){
+    const lsObj = {
+        datas: data,
+        currentId: idCounterNum
+    };
+    localStorage.setItem('todolistData', JSON.stringify(lsObj));
+}
+
+/**
  * 初期化関数
  */
 function init(){
-    lsDataSaveAndGet();
     if(objTodoListDatas.length > 0) {
         elTodolistListWrap.appendChild(elTodolist);
         updateList(objTodoListDatas);
@@ -281,7 +182,7 @@ function entryTodo(){
     // フロント画面に描写
     updateList (objTodoListDatas);
     // ローカルストレージに保存
-    lsDataSaveAndGet();
+    lsDataSave(objTodoListDatas);
     // 入力フォームを空欄に戻す
     elTodoinputtext.value = '';
 }
@@ -310,7 +211,7 @@ elTodolistListWrap.addEventListener(_click, function(e){
             elTodolistListWrap.appendChild(noDataMessage);
         }
         objTodoListDatas = updateObjTodoListDatas;
-        lsDataSaveAndGet();
+        lsDataSave(objTodoListDatas);
         // console.log(localStorage.getItem('todolistData'));
     }
 });
@@ -325,6 +226,15 @@ elTodolistListWrap.addEventListener('change', function(e){
         const findEl = objTodoListDatas.find(el => el.id === dataId);
         // 抽出データのステータスを変更
         findEl.status = findEl.status === false ? true : false;
-        lsDataSaveAndGet();
+        lsDataSave(objTodoListDatas);
     }
 });
+
+
+// elTodoinputtext.addEventListener('mouseenter', () => {
+//     alert('マウスON');
+// });
+
+// elTodoinputtext.addEventListener('mouseleave', () => {
+//     alert('マウスOFF');
+// });
