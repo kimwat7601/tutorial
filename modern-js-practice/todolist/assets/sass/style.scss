@@ -1,0 +1,54 @@
+//////////////////////////
+// Style Sass Setting File
+// Author: HS Syoka
+// Date: 22.04.09
+//////////////////////////
+
+// Import
+@use "global" as global;
+
+.page-title {
+    text-align: center;
+    font-size: 24px;
+    .page-main-title {
+        display: block;
+        font-size: 36px;
+    }
+}
+.todolist-wrap {
+    padding: 50px 0;
+    margin: 0 auto;
+    max-width: 600px;
+    // text-align: center;
+    .todolist-formbox {
+        .todo-input-text {
+            width: calc(100% - 100px);
+            height: 30px;
+        }
+        .btn-entry {
+            width: 80px;
+            height: 36px;
+            margin-left:10px;
+        }
+    }
+    .todolist-listWrap {
+        padding: 50px;
+        margin-left: 0;
+        padding-left: 0;
+        .todolist {
+            .todolist__item {
+                margin: 10px 0;
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+                border-bottom: #CCC solid 1px;
+                padding-bottom: 5px;
+                .todo-check {
+                    &:checked + .todo-text {
+                        text-decoration: line-through;
+                    }
+                }
+            }
+        }
+    }
+}

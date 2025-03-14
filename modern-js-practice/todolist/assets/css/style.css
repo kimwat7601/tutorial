@@ -1,0 +1,45 @@
+.page-title {
+  text-align: center;
+  font-size: 24px;
+}
+.page-title .page-main-title {
+  display: block;
+  font-size: 36px;
+}
+
+.todolist-wrap {
+  padding: 50px 0;
+  margin: 0 auto;
+  max-width: 600px;
+}
+.todolist-wrap .todolist-formbox .todo-input-text {
+  width: calc(100% - 100px);
+  height: 30px;
+}
+.todolist-wrap .todolist-formbox .btn-entry {
+  width: 80px;
+  height: 36px;
+  margin-left: 10px;
+}
+.todolist-wrap .todolist-listWrap {
+  padding: 50px;
+  margin-left: 0;
+  padding-left: 0;
+}
+.todolist-wrap .todolist-listWrap .todolist .todolist__item {
+  margin: 10px 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: #CCC solid 1px;
+  padding-bottom: 5px;
+}
+.todolist-wrap .todolist-listWrap .todolist .todolist__item .todo-check:checked + .todo-text {
+  text-decoration: line-through;
+}/*# sourceMappingURL=style.css.map */
