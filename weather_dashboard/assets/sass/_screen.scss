@@ -1,0 +1,51 @@
+//////////////////////////
+// Weather Dashboard App
+// Each Screen Styles Setting File
+// Author: Wataru Kimura
+// Date: 25.03.20
+//////////////////////////
+@use "global" as g;
+/* ===========================================
+ * DASH BOARD
+ * ======================================== */
+/* HEADER AREA */
+/* ======================================== */
+.dashboard-header {
+    margin-bottom: 20px;
+}
+
+/* BODY AREA */
+/* ======================================== */
+.dashboard-body {
+    // FUTURE AREA
+    .future-weather-area {
+        margin-top: 30px;
+    }
+}
+
+@include g.min-screen(g.$BP_TB){
+    /* ===========================================
+    * DASH BOARD
+    * ======================================== */
+    /* HEADER AREA */
+    /* ======================================== */
+    .dashboard-header {
+        margin-bottom: 30px;
+    }
+
+    /* BODY AREA */
+    /* ======================================== */
+    .dashboard-body {
+        display: flex;
+        gap: 20px;
+
+        .cur-weather-area {
+            width: 50%;
+        }
+        // FUTURE AREA
+        .future-weather-area {
+            width: 50%;
+            margin-top: 0px;
+        }
+    }
+}

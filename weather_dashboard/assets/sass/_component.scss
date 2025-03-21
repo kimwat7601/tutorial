@@ -1,0 +1,373 @@
+//////////////////////////
+// Weather Dashboard App
+// Component Styles Setting File
+// Author: Wataru Kimura
+// Date: 25.03.20
+//////////////////////////
+
+@use "global" as g;
+/* ===========================================
+ * Each Component
+ * ======================================== */
+
+/* Heading */
+/* ======================================== */
+
+/* Heading Screen */
+.heading-screen {
+    @include g.fs(20);
+    font-weight: 700;
+    text-align: center;
+}
+
+ /* Link */
+/* ======================================== */
+.text-link {
+    text-decoration: underline;
+}
+
+/* List */
+/* ======================================== */
+/* future Weather List */
+.future-weather-list {
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0;
+        padding: 10px;
+        &:not(:first-child) {
+            border-top: rgba(255,255,255, .5) solid 1px;
+        }
+    }
+    &__time {
+        width: 3em;
+        text-align: center;
+    }
+    &__weather {
+        width: 40px;
+        text-align: center;
+        &-text {
+            display: none;
+        }
+    }
+    &__temp {
+        // width: 4rem;
+        display: flex;
+        align-items: center;
+        img {
+            margin-right: 5px;
+        }
+    }
+    &__cor {
+        // width: 4rem;
+        text-align: right;
+        img {
+            margin-right: 5px;
+        }
+    }
+}
+
+
+/* Box */
+/* ======================================== */
+.cur-weather-area {
+    $otherval_height: 26px;
+    background: var(--grad_dblue);
+    background: linear-gradient(0deg, var(--grad_dblue) 0%, var(--grad_lblue) 100%);
+    padding: 20px 0;
+    border-radius: 8px;
+    &__city-text {
+        @include g.fs(24);
+        font-weight: 600;
+        font-family: var(--ffen);
+        text-align: center;
+    }
+    &__weather-temperature {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        gap: 20px;
+    }
+    &__weather-icn {
+        width: 40%;
+        max-width: 134px;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    &__temperature {
+        @include g.fs(60);
+        font-weight: 600;
+        line-height: 1;
+        img {
+            margin-left: 10px;
+            height: 35px;
+        }
+    }
+    &__otherinfo-box {
+        display: flex;
+        // align-items: center;
+    }
+    &__otherinfo-item {
+        width: calc(100% / 3);
+        text-align: center;
+        &:not(:first-child) {
+            border-left: rgba(255,255,255, .5) solid 1px;
+        }
+    }
+    &__otherinfo-icn {
+        height: 32px;
+    }
+    &__otherinfo-val {
+        display: block;
+        @include g.fs(14);
+        font-weight: 600;
+        line-height: $otherval_height;
+        margin-top: 5px;
+    }
+    &__otherinfo-num {
+        @include g.fs(20);
+    }
+    .icn-wd {
+        height: $otherval_height;
+    }
+}
+
+/* Tab */
+/* ======================================== */
+.tab-area {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.tab-item {
+    $item_num: 5;
+    $item_height: 48px;
+    width: calc(100% / $item_num);
+    min-width: 50px;
+    height: $item_height;
+    line-height: $item_height;
+    border-radius: calc($item_height / 2);
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .3s;
+    &--is-active {
+        background-color: white;
+        box-shadow: 0 0px 10px rgba(0,0,0,.13);
+        color: var(--baseblue);
+    }
+}
+
+.tab-contents-wrap {
+    border-radius: 8px;
+    background-color: var(--grad_dblue);
+    padding: 0 20px;
+}
+.tab-contents {
+    display: none;
+    &--is-active {
+        display: block;
+        animation: fadeIn .3s forwards;
+    }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0;}
+    100% { opacity: 1;}
+}
+
+/* Form Parts */
+/* ======================================== */
+.form-input {
+    &__text {
+        $ipt_height: 48px;
+        $icn_width: 22px;
+        width: 100%;
+        height: $ipt_height;
+        border-radius: calc($ipt_height / 2);
+        box-shadow: inset 0 2px 6px rgba(0,0,0,.25);
+        color: var(--brack50);
+        padding-left: calc($icn_width + 30px);
+        background: white url(../images/icn_search.svg) no-repeat 15px center / 22px auto;
+    }
+}
+
+@include g.min-screen(g.$BP_TB){
+    /* ===========================================
+    * Each Component
+    * ======================================== */
+
+    /* Heading */
+    /* ======================================== */
+
+    /* Heading Screen */
+    .heading-screen {
+        @include g.fs(24);
+    }
+
+    /* List */
+    /* ======================================== */
+    /* future Weather List */
+    .future-weather-list {
+        &__item {
+            padding: 15px;
+        }
+        // &__time {
+        //     width: 3em;
+        //     text-align: center;
+        // }
+        &__weather {
+            width: calc(36px + 8em);
+            text-align: left;
+            display: flex;
+            align-items: center;
+            &-text {
+                display: inline;
+                margin-left: 5px;
+            }
+        }
+        &__temp {
+            // width: 4rem;
+            img {
+                margin-right: 5px;
+            }
+        }
+        &__cor {
+            // width: 4rem;
+            img {
+                margin-right: 5px;
+            }
+        }
+    }
+
+
+    /* Box */
+    /* ======================================== */
+    .cur-weather-area {
+        $otherval_height: 26px;
+        padding: 30px 0;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        &__city-text {
+            @include g.fs(32);
+            height: 38px;
+            line-height: 38px;
+            flex-shrink: 0;
+        }
+        &__weather-temperature {
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;
+            padding: 0;
+            gap: 30px;
+            flex-grow: 1;
+        }
+        &__weather-icn {
+            width: 40%;
+            max-width: 134px;
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+        &__temperature {
+            @include g.fs(87);
+            img {
+                margin-left: 20px;
+                height: 42px;
+            }
+        }
+        &__otherinfo-box {
+            // display: flex;
+            // align-items: center;
+            flex-shrink: 0;
+            height: 70px;
+        }
+        &__otherinfo-item {
+            padding-top: 5px;
+            // width: calc(100% / 3);
+            // text-align: center;
+            // &:not(:first-child) {
+            //     border-left: rgba(255,255,255, .5) solid 1px;
+            // }
+        }
+        // &__otherinfo-icn {
+        //     height: 32px;
+        // }
+        &__otherinfo-val {
+            // display: block;
+            // @include g.fs(14);
+            // font-weight: 600;
+            // line-height: $otherval_height;
+            // margin-top: 5px;
+        }
+        &__otherinfo-num {
+            @include g.fs(24);
+        }
+        .icn-wd {
+            height: $otherval_height;
+        }
+    }
+
+    /* Tab */
+    /* ======================================== */
+    .tab-area {
+        // display: flex;
+        // gap: 5px;
+        // margin-bottom: 10px;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+    .tab-item {
+        $item_num: 5;
+        $item_height: 38px;
+        // width: calc(100% / $item_num);
+        // min-width: 50px;
+        max-width: 74px;
+        height: $item_height;
+        line-height: $item_height;
+        border-radius: calc($item_height / 2);
+        // text-align: center;
+        // font-weight: 500;
+        // &--is-active {
+        //     background-color: white;
+        //     box-shadow: 0 0px 10px rgba(0,0,0,.13);
+        //     color: var(--baseblue);
+        // }
+    }
+
+    .tab-contents-wrap {
+        border-radius: 16px;
+        // background-color: var(--grad_dblue);
+        // padding: 0 20px;
+    }
+    // .tab-contents {
+    //     display: none;
+    //     &--is-active {
+    //         display: block;
+    //     }
+    // }
+
+    /* Form Parts */
+    /* ======================================== */
+    .form-input {
+        &__text {
+            $ipt_height: 48px;
+            // $icn_width: 22px;
+            // width: 100%;
+            height: $ipt_height;
+            border-radius: calc($ipt_height / 2);
+            box-shadow: inset 0 2px 6px rgba(0,0,0,.25);
+            // color: var(--brack50);
+            // padding-left: calc($icn_width + 30px);
+            // background: white url(../images/icn_search.svg) no-repeat 15px center / 22px auto;
+        }
+    }
+
+}

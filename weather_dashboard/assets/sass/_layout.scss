@@ -1,0 +1,104 @@
+//////////////////////////
+// Weather Dashboard App
+// Layout Styles Setting File
+// Author: Wataru Kimura
+// Date: 25.03.20
+//////////////////////////
+
+@use "global" as g;
+/* ===========================================
+ * COMMON
+ * ======================================== */
+
+/* Initial */
+/* ======================================== */
+input:focus, textarea:focus {outline: none;}
+input::placeholder, textarea::placeholder {
+    color: var(--black50);
+}
+
+body {
+    font-size: 1rem;
+    background-color: var(--baseblue);
+    color: white;
+    font-feature-settings: "palt";
+    letter-spacing: .05em;
+}
+
+
+/* ===========================================
+ * CONTENTS
+ * ======================================== */
+.contents-wrap {
+    width: 100%;
+    // height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    &__inner {
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+}
+
+/* ===========================================
+ * HEADER
+ * ======================================== */
+.header-app {
+    padding: 20px 0;
+}
+
+
+/* ===========================================
+ * FOOTER
+ * ======================================== */
+.footer-app {
+    padding: 20px 0;
+}
+.copyright {
+    text-align: center;
+    @include g.fs(10);
+    font-weight: 400;
+}
+
+@include g.min-screen(g.$BP_TB){
+    /* ===========================================
+    * CONTENTS
+    * ======================================== */
+    .contents-wrap {
+        // width: 100%;
+        min-height: 100vh;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        // overflow-y: auto;
+        // &__inner {
+        //     width: 100%;
+        //     max-width: 946px;
+        //     margin: 0 auto;
+        //     padding: 0 20px;
+        // }
+    }
+
+    /* ===========================================
+    * HEADER
+    * ======================================== */
+    .header-app {
+        padding: 30px 0 ;
+    }
+
+
+    /* ===========================================
+    * FOOTER
+    * ======================================== */
+    .footer-app {
+        padding: 20px 0 30px;
+    }
+    .copyright {
+        @include g.fs(12);
+    }
+
+}

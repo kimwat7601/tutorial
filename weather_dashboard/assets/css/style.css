@@ -1,0 +1,892 @@
+/*! destyle.css v4.0.1 | MIT License | https://github.com/nicolas-cusan/destyle.css */
+/* Reset box-model and set borders */
+/* ============================================ */
+*,
+::before,
+::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-style: solid;
+  border-width: 0;
+  min-width: 0;
+}
+
+/* Document */
+/* ============================================ */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ * 3. Remove gray overlay on links for iOS.
+ */
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -webkit-tap-highlight-color: transparent; /* 3*/
+}
+
+/* Sections */
+/* ============================================ */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block;
+}
+
+/* Vertical rhythm */
+/* ============================================ */
+p,
+table,
+blockquote,
+address,
+pre,
+iframe,
+form,
+figure,
+dl {
+  margin: 0;
+}
+
+/* Headings */
+/* ============================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+/* Lists (enumeration) */
+/* ============================================ */
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Lists (definition) */
+/* ============================================ */
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 0;
+}
+
+/* Grouping content */
+/* ============================================ */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+  border-top-width: 1px;
+  margin: 0;
+  clear: both;
+  color: inherit;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: inherit; /* 2 */
+}
+
+address {
+  font-style: inherit;
+}
+
+/* Text-level semantics */
+/* ============================================ */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: inherit; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Replaced content */
+/* ============================================ */
+/**
+ * Prevent vertical alignment issues.
+ */
+svg,
+img,
+embed,
+object,
+iframe {
+  vertical-align: bottom;
+}
+
+/* Forms */
+/* ============================================ */
+/**
+ * Reset form fields to make them styleable.
+ * 1. Make form elements stylable across systems iOS especially.
+ * 2. Inherit text-transform from parent.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  -webkit-appearance: none; /* 1 */
+  -moz-appearance: none;
+       appearance: none;
+  vertical-align: middle;
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  text-align: inherit;
+  text-transform: inherit; /* 2 */
+}
+
+/**
+ * Correct cursors for clickable elements.
+ */
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  cursor: pointer;
+}
+
+button:disabled,
+[type=button]:disabled,
+[type=reset]:disabled,
+[type=submit]:disabled {
+  cursor: default;
+}
+
+/**
+ * Improve outlines for Firefox and unify style with input elements & buttons.
+ */
+:-moz-focusring {
+  outline: auto;
+}
+
+select:disabled {
+  opacity: inherit;
+}
+
+/**
+ * Remove padding
+ */
+option {
+  padding: 0;
+}
+
+/**
+ * Reset to invisible
+ */
+fieldset {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * Correct the outline style in Safari.
+ */
+[type=search] {
+  outline-offset: -2px; /* 1 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Fix font inheritance.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/**
+ * Fix appearance for Firefox
+ */
+[type=number] {
+  -moz-appearance: textfield;
+}
+
+/**
+ * Clickable labels
+ */
+label[for] {
+  cursor: pointer;
+}
+
+/* Interactive */
+/* ============================================ */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+
+/*
+ * Remove outline for editable content.
+ */
+[contenteditable]:focus {
+  outline: auto;
+}
+
+/* Tables */
+/* ============================================ */
+/**
+1. Correct table border color inheritance in all Chrome and Safari.
+*/
+table {
+  border-color: inherit; /* 1 */
+  border-collapse: collapse;
+}
+
+caption {
+  text-align: left;
+}
+
+td,
+th {
+  vertical-align: top;
+  padding: 0;
+}
+
+th {
+  text-align: left;
+  font-weight: bold;
+}
+
+/* ===========================================
+ * Variables
+ * ======================================== */
+:root {
+  --brack90: #111111;
+  --brack50: #9E9E9E;
+  --baseblue: #2A88CD;
+  --contentsblue: #2F93DD;
+  --grad_lblue: #3B9FE9;
+  --grad_dblue: #2F93DD;
+  --ffbase: "Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  --ffen: "Open Sans", sans-serif;
+}
+
+/* ===========================================
+ * COMMON
+ * ======================================== */
+/* Initial */
+/* ======================================== */
+input:focus, textarea:focus {
+  outline: none;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: var(--black50);
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: var(--black50);
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color: var(--black50);
+}
+
+input::-ms-input-placeholder, textarea::-ms-input-placeholder {
+  color: var(--black50);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--black50);
+}
+
+body {
+  font-size: 1rem;
+  background-color: var(--baseblue);
+  color: white;
+  -webkit-font-feature-settings: "palt";
+          font-feature-settings: "palt";
+  letter-spacing: 0.05em;
+}
+
+/* ===========================================
+ * CONTENTS
+ * ======================================== */
+.contents-wrap {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow-y: auto;
+}
+.contents-wrap__inner {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===========================================
+ * HEADER
+ * ======================================== */
+.header-app {
+  padding: 20px 0;
+}
+
+/* ===========================================
+ * FOOTER
+ * ======================================== */
+.footer-app {
+  padding: 20px 0;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.625rem;
+  font-weight: 400;
+}
+
+@media print, screen and (min-width: 897px) {
+  /* ===========================================
+  * CONTENTS
+  * ======================================== */
+  .contents-wrap {
+    min-height: 100vh;
+  }
+  /* ===========================================
+  * HEADER
+  * ======================================== */
+  .header-app {
+    padding: 30px 0;
+  }
+  /* ===========================================
+  * FOOTER
+  * ======================================== */
+  .footer-app {
+    padding: 20px 0 30px;
+  }
+  .copyright {
+    font-size: 0.75rem;
+  }
+}
+/* ===========================================
+ * Each Component
+ * ======================================== */
+/* Heading */
+/* ======================================== */
+/* Heading Screen */
+.heading-screen {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Link */
+/* ======================================== */
+.text-link {
+  text-decoration: underline;
+}
+
+/* List */
+/* ======================================== */
+/* future Weather List */
+.future-weather-list__item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0;
+  padding: 10px;
+}
+.future-weather-list__item:not(:first-child) {
+  border-top: rgba(255, 255, 255, 0.5) solid 1px;
+}
+.future-weather-list__time {
+  width: 3em;
+  text-align: center;
+}
+.future-weather-list__weather {
+  width: 40px;
+  text-align: center;
+}
+.future-weather-list__weather-text {
+  display: none;
+}
+.future-weather-list__temp {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.future-weather-list__temp img {
+  margin-right: 5px;
+}
+.future-weather-list__cor {
+  text-align: right;
+}
+.future-weather-list__cor img {
+  margin-right: 5px;
+}
+
+/* Box */
+/* ======================================== */
+.cur-weather-area {
+  background: var(--grad_dblue);
+  background: -webkit-gradient(linear, left bottom, left top, from(var(--grad_dblue)), to(var(--grad_lblue)));
+  background: -webkit-linear-gradient(bottom, var(--grad_dblue) 0%, var(--grad_lblue) 100%);
+  background: linear-gradient(0deg, var(--grad_dblue) 0%, var(--grad_lblue) 100%);
+  padding: 20px 0;
+  border-radius: 8px;
+}
+.cur-weather-area__city-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: var(--ffen);
+  text-align: center;
+}
+.cur-weather-area__weather-temperature {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+.cur-weather-area__weather-icn {
+  width: 40%;
+  max-width: 134px;
+}
+.cur-weather-area__weather-icn img {
+  width: 100%;
+  height: auto;
+}
+.cur-weather-area__temperature {
+  font-size: 3.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.cur-weather-area__temperature img {
+  margin-left: 10px;
+  height: 35px;
+}
+.cur-weather-area__otherinfo-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.cur-weather-area__otherinfo-item {
+  width: 33.3333333333%;
+  text-align: center;
+}
+.cur-weather-area__otherinfo-item:not(:first-child) {
+  border-left: rgba(255, 255, 255, 0.5) solid 1px;
+}
+.cur-weather-area__otherinfo-icn {
+  height: 32px;
+}
+.cur-weather-area__otherinfo-val {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 26px;
+  margin-top: 5px;
+}
+.cur-weather-area__otherinfo-num {
+  font-size: 1.25rem;
+}
+.cur-weather-area .icn-wd {
+  height: 26px;
+}
+
+/* Tab */
+/* ======================================== */
+.tab-area {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.tab-item {
+  width: 20%;
+  min-width: 50px;
+  height: 48px;
+  line-height: 48px;
+  border-radius: 24px;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.tab-item--is-active {
+  background-color: white;
+  -webkit-box-shadow: 0 0px 10px rgba(0, 0, 0, 0.13);
+          box-shadow: 0 0px 10px rgba(0, 0, 0, 0.13);
+  color: var(--baseblue);
+}
+
+.tab-contents-wrap {
+  border-radius: 8px;
+  background-color: var(--grad_dblue);
+  padding: 0 20px;
+}
+
+.tab-contents {
+  display: none;
+}
+.tab-contents--is-active {
+  display: block;
+  -webkit-animation: fadeIn 0.3s forwards;
+          animation: fadeIn 0.3s forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* Form Parts */
+/* ======================================== */
+.form-input__text {
+  width: 100%;
+  height: 48px;
+  border-radius: 24px;
+  -webkit-box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25);
+          box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25);
+  color: var(--brack50);
+  padding-left: 52px;
+  background: white url(../images/icn_search.svg) no-repeat 15px center/22px auto;
+}
+
+@media print, screen and (min-width: 897px) {
+  /* ===========================================
+  * Each Component
+  * ======================================== */
+  /* Heading */
+  /* ======================================== */
+  /* Heading Screen */
+  .heading-screen {
+    font-size: 1.5rem;
+  }
+  /* List */
+  /* ======================================== */
+  /* future Weather List */
+  .future-weather-list__item {
+    padding: 15px;
+  }
+  .future-weather-list__weather {
+    width: calc(36px + 8em);
+    text-align: left;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .future-weather-list__weather-text {
+    display: inline;
+    margin-left: 5px;
+  }
+  .future-weather-list__temp img {
+    margin-right: 5px;
+  }
+  .future-weather-list__cor img {
+    margin-right: 5px;
+  }
+  /* Box */
+  /* ======================================== */
+  .cur-weather-area {
+    padding: 30px 0;
+    border-radius: 16px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 20px;
+  }
+  .cur-weather-area__city-text {
+    font-size: 2rem;
+    height: 38px;
+    line-height: 38px;
+    -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+  }
+  .cur-weather-area__weather-temperature {
+    padding: 0;
+    gap: 30px;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+  }
+  .cur-weather-area__weather-icn {
+    width: 40%;
+    max-width: 134px;
+  }
+  .cur-weather-area__weather-icn img {
+    width: 100%;
+    height: auto;
+  }
+  .cur-weather-area__temperature {
+    font-size: 5.4375rem;
+  }
+  .cur-weather-area__temperature img {
+    margin-left: 20px;
+    height: 42px;
+  }
+  .cur-weather-area__otherinfo-box {
+    -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+    height: 70px;
+  }
+  .cur-weather-area__otherinfo-item {
+    padding-top: 5px;
+  }
+  .cur-weather-area__otherinfo-num {
+    font-size: 1.5rem;
+  }
+  .cur-weather-area .icn-wd {
+    height: 26px;
+  }
+  /* Tab */
+  /* ======================================== */
+  .tab-area {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 0 10px;
+  }
+  .tab-item {
+    max-width: 74px;
+    height: 38px;
+    line-height: 38px;
+    border-radius: 19px;
+  }
+  .tab-contents-wrap {
+    border-radius: 16px;
+  }
+  /* Form Parts */
+  /* ======================================== */
+  .form-input__text {
+    height: 48px;
+    border-radius: 24px;
+    -webkit-box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25);
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25);
+  }
+}
+/* ===========================================
+ * DASH BOARD
+ * ======================================== */
+/* HEADER AREA */
+/* ======================================== */
+.dashboard-header {
+  margin-bottom: 20px;
+}
+
+/* BODY AREA */
+/* ======================================== */
+.dashboard-body .future-weather-area {
+  margin-top: 30px;
+}
+
+@media print, screen and (min-width: 897px) {
+  /* ===========================================
+  * DASH BOARD
+  * ======================================== */
+  /* HEADER AREA */
+  /* ======================================== */
+  .dashboard-header {
+    margin-bottom: 30px;
+  }
+  /* BODY AREA */
+  /* ======================================== */
+  .dashboard-body {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 20px;
+  }
+  .dashboard-body .cur-weather-area {
+    width: 50%;
+  }
+  .dashboard-body .future-weather-area {
+    width: 50%;
+    margin-top: 0px;
+  }
+}/*# sourceMappingURL=style.css.map */
