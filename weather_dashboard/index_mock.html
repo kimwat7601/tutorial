@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="format-detection" content="telephone=no">
+
+<title>天気予報アプリ ダッシュボード | Javascript実習</title>
+<meta name="description" content="Javascript実習用の天気予報アプリダッシュボード画面です。都市ごとの天気を検索したり、3時間ごとの天気を5日間確認することができます。">
+
+<script type="module">
+document.documentElement.classList.remove('no-js');
+document.documentElement.classList.add('js');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<meta property="og:title" content="天気予報アプリ ダッシュボード">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Javascript実習用の天気予報アプリダッシュボード画面です。都市ごとの天気を検索したり、3時間ごとの天気を5日間確認することができます。">
+<meta property="og:image" content="">
+<meta property="og:image:alt" content="">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="Javascript実習">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://mywebsite.com/page">
+<!--<link rel="canonical" href="https://mywebsite.com/page">-->
+
+<!-- <link rel="icon" href="/favicon.ico">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/my.webmanifest">
+<meta name="theme-color" content="#413993"> -->
+
+<!-- Google Tag Manager -->
+
+<!-- End Google Tag Manager -->
+</head>
+
+<body>
+<div class="contents-wrap">
+    <div class="contents-wrap__inner">
+        <!--================= Header Start =================-->
+        <header class="header-app">
+            <h1 class="heading-screen">天気予報アプリ ダッシュボード</h1>
+        </header>
+        <!--================= Header End =================-->
+        <!--================= Main Contents Start =================-->
+        <main role="main">
+            <div id="app">
+                <!--=========== DASHBOARD HEADER AREA ===========-->
+                <section class="dashboard-header">
+                    <form>
+                        <div class="dashboard-header__inner">
+                            <input type="text" class="form-input__text" id="ipt-city-search" placeholder="都市名・郵便番号を入力">
+                        </div>
+                    </form>
+                </section>
+                <!--=========== /DASHBOARD HEADER AREA ===========-->
+                <!--=========== DASHBOARD BODY AREA ===========-->
+                <div class="dashboard-body">
+                    <!--==== CURRENT AREA ====-->
+                    <section class="cur-weather-area">
+                        <!-- <p class="cur-weather-area__city-text">Kyoto City</p>
+                        <div class="cur-weather-area__weather-temperature">
+                            <figure class="cur-weather-area__weather-icn"><img src="assets/images/icn_rain.svg" alt="雨"></figure>
+                            <p class="cur-weather-area__temperature">12<img src="assets/images/icn_thermometer.svg" alt="℃"></p>
+                        </div>
+                        <ul class="cur-weather-area__otherinfo-box">
+                            <li class="cur-weather-area__otherinfo-item">
+                                <img src="assets/images/icn-humidity.svg" alt="湿度" class="cur-weather-area__otherinfo-icn">
+                                <span class="cur-weather-area__otherinfo-val"><span class="cur-weather-area__otherinfo-num" id="cof-num">20</span>%</span>
+                            </li>
+                            <li class="cur-weather-area__otherinfo-item">
+                                <img src="assets/images/icn_wind.svg" alt="風速" class="cur-weather-area__otherinfo-icn">
+                                <span class="cur-weather-area__otherinfo-val"><span class="cur-weather-area__otherinfo-num" id="ws-num">2</span>m/s</span>
+                            </li>
+                            <li class="cur-weather-area__otherinfo-item">
+                                <img src="assets/images/icn_aerovane.svg" alt="風向き" class="cur-weather-area__otherinfo-icn">
+                                <span class="cur-weather-area__otherinfo-val cur-weather-area__otherinfo-val--wd"><img src="assets/images/icn_direction.svg" class="icn-wd" id="icn-wd" alt="方向"></span>
+                            </li>
+                        </ul>
+                        <div class="loading-box">
+                            <div class="loading-box__inner">
+                                <div class="loader-inner ball-clip-rotate-pulse">
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="error-message-box">
+                            <p class="error-message">データを取得できませんでした。<br>しばらく経ってからもう一度お試しください。</p>
+                        </div> -->
+                        <div class="init-message-box">
+                            <p class="init-message">都市名・または郵便番号で検索すると<br>ここに天気が表示されます。</p>
+                        </div>
+                    </section>
+                    <!--==== /CURRENT AREA ====-->
+                    <!--==== FORECAST AREA ====-->
+                    <section class="forecast-weather-area">
+                        <!-- <ul class="tab-area">
+                            <li class="tab-item tab-item--is-active" data-tabid="wday01"><span class="forecast-weather__day-num">17</span>日</li>
+                            <li class="tab-item" data-tabid="wday02"><span class="forecast-weather__day-num">18</span>日</li>
+                            <li class="tab-item" data-tabid="wday03"><span class="forecast-weather__day-num">19</span>日</li>
+                            <li class="tab-item" data-tabid="wday04"><span class="forecast-weather__day-num">20</span>日</li>
+                            <li class="tab-item" data-tabid="wday05"><span class="forecast-weather__day-num">21</span>日</li>
+                        </ul>
+                        <div class="tab-contents-wrap">
+                            <div class="tab-contents tab-contents--is-active" id="wday01">
+                                <ul class="forecast-weather-list">
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">9:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">12:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_cloudy_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">くもり時々晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">15:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_cloudy.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">くもり</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">18:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_rain.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">雨</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">21:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-contents" id="wday02">
+                                <ul class="forecast-weather-list">
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">9:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">12:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_cloudy_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">くもり時々晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">15:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_cloudy.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">くもり</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">18:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_rain.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">雨</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">21:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-contents" id="wday03">
+                                <ul class="forecast-weather-list">
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">9:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">12:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_cloudy_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">くもり時々晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">15:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_cloudy.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">くもり</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">18:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_rain.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">雨</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">21:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-contents" id="wday04">
+                                <ul class="forecast-weather-list">
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">9:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">12:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_cloudy_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">くもり時々晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">15:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_cloudy.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">くもり</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">18:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_rain.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">雨</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">21:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-contents" id="wday05">
+                                <ul class="forecast-weather-list">
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">9:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">12:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_cloudy_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">くもり時々晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">15:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_cloudy.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">くもり</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">18:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_rain.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">雨</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                    <li class="forecast-weather-list__item">
+                                        <span class="forecast-weather-list__time">21:00</span>
+                                        <span class="forecast-weather-list__weather"><img src="assets/images/icn_sunny.svg" alt="sunny" class=""><span class="forecast-weather-list__weather-text">晴れ</span></span>
+                                        <span class="forecast-weather-list__temp"><img src="assets/images/icn_thermometer_sml.svg" alt="最高/最低気温">12 / 4</span>
+                                        <span class="forecast-weather-list__cor"><img src="assets/images/icn_drop.svg" alt="降水確率">20%</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="loading-box">
+                            <div class="loading-box__inner">
+                                <div class="loader-inner ball-clip-rotate-pulse">
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="error-message-box">
+                            <p class="error-message">データを取得できませんでした。<br>しばらく経ってからもう一度お試しください。</p>
+                        </div>
+                    </section>
+                    <!--==== /FORECAST AREA ====-->
+                </div>
+                <!--=========== /DASHBOARD BODY AREA ===========-->
+            </div>
+        </main>
+        <!--================= Main Contents End =================-->
+        <!--================= Footer Start =================-->
+        <footer class="footer-app">
+            <p class="copyright"><a href="http://www.freepik.com" target="_blank" class="text-link">Designed by macrovector / Freepik</a></p>
+        </footer>
+        <!--================= Footer End =================-->
+    </div>
+</div>
+<!-- <script src="assets/js/scripts.js"></script> -->
+</body>
+</html>

@@ -28,8 +28,8 @@
 
 /* List */
 /* ======================================== */
-/* future Weather List */
-.future-weather-list {
+/* forecast Weather List */
+.forecast-weather-list {
     &__item {
         display: flex;
         justify-content: space-between;
@@ -196,6 +196,94 @@
     }
 }
 
+/* Loading */
+/* ======================================== */
+.loading-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    &__inner {
+        display: flex;
+        // max-width: 25%;
+        height: 200px;
+        align-items: center;
+        justify-content: center;    
+    }
+}
+.ball-clip-rotate-pulse {
+    position: relative;
+    transform: translateY(-15px);
+    & > div {
+        animation-fill-mode: both;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        border-radius: 100%;
+        &:first-child {
+            background: #fff;
+            height: 16px;
+            width: 16px;
+            top: 7px;
+            left: -7px;
+            animation: scale 1s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite;
+        }
+        &:last-child {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            left: -14px;
+            top: 0px;
+            background: transparent;
+            border: 2px solid;
+            border-color: #fff transparent #fff transparent;
+            animation: rotate 1s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite;
+            animation-duration: 1s;
+        }
+    }
+}
+
+
+/* Initial Message */
+/* ======================================== */
+.init-message-box {
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.init-message {
+    text-align: center;
+    @include g.fs(16);
+    line-height: 1.6;
+}
+
+/* Error Message */
+/* ======================================== */
+.error-message-box {
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error-message {
+    text-align: center;
+    @include g.fs(16);
+    line-height: 1.6;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(0.6);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
 @include g.min-screen(g.$BP_TB){
     /* ===========================================
     * Each Component
@@ -211,8 +299,8 @@
 
     /* List */
     /* ======================================== */
-    /* future Weather List */
-    .future-weather-list {
+    /* forecast Weather List */
+    .forecast-weather-list {
         &__item {
             padding: 15px;
         }
@@ -300,13 +388,13 @@
         // &__otherinfo-icn {
         //     height: 32px;
         // }
-        &__otherinfo-val {
-            // display: block;
-            // @include g.fs(14);
-            // font-weight: 600;
-            // line-height: $otherval_height;
-            // margin-top: 5px;
-        }
+        // &__otherinfo-val {
+        //     display: block;
+        //     @include g.fs(14);
+        //     font-weight: 600;
+        //     line-height: $otherval_height;
+        //     margin-top: 5px;
+        // }
         &__otherinfo-num {
             @include g.fs(24);
         }
