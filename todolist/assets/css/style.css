@@ -40,6 +40,6 @@
   border-bottom: #CCC solid 1px;
   padding-bottom: 5px;
 }
-.todolist-wrap .todolist-listWrap .todolist .todolist__item .todo-check:checked + .todo-text {
+.todolist-wrap .todolist-listWrap .todolist .todolist__item .todo-checkBox:checked + .todo-text {
   text-decoration: line-through;
 }/*# sourceMappingURL=style.css.map */

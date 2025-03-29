@@ -104,17 +104,7 @@ let idCounterNum;
  * ローカルストレージ保存用（JSON形式を文字列で保存）
  * @param {object} appname ストレージに保存するアプリ名
  */
-function lsDataSaveAndGet(){
-    const savedata = storage.getItem('todolistData');
-    console.log(savedata);
-    if(savedata){
-        objTodoListDatas = savedata.datas;
-        idCounterNum = savedata.currentId;
-    } else {
-        objTodoListDatas = [];
-        idCounterNum = 0;
-    }
-
+function lsDataSave(){
     const lsObj = {
         datas: objTodoListDatas,
         currentId: idCounterNum
@@ -140,6 +130,7 @@ noDataMessage.innerText = '現在登録タスクはありません。';
  */
 function entryTodoDatas(inputTxt, datas){
     idCounterNum++;
+    // console.log(idCounterNum);
     // console.log(objTodoListDatas);
     const dataObj = {
         id: idCounterNum,
@@ -160,7 +151,7 @@ function createElement(tag, options = {}, ...children){
 
     // プロパティをセット
     Object.entries(options).forEach(([key, value]) => {
-        console.log(value);
+        // console.log(value);
         if(key.startsWith('on')){
             // イベントリスナーを追加（例：onClick -> click）
             el.addEventListener(key.slice(2).toLowerCase(), value);
@@ -202,10 +193,10 @@ function listItemNodeCreate(id, todoTxt, status){
         'li',
         {class: 'todolist__item', dataset: {id: id}},
         createElement('span',{class:'todotext-wrap'},
-            createElement('input', {type: 'checkbox', class: 'todo-checkBox', checked: status}),
+            createElement('input', {type: 'checkbox', class: 'todo-checkBox', onChange: onCompleteCheck, checked: status}),
             createElement('span', {class: 'todo-text'}, todoTxt)
         ),
-        createElement('button', {class: 'btn-delete'}, '削除')
+        createElement('button', {class: 'btn-delete', onClick: onDeleteTodoClick}, '削除')
     );
     // const elTodolistItem = document.createElement('li');
     // elTodolistItem.classList.add('todolist__item');
@@ -248,7 +239,14 @@ function updateList (listObjArray){
  * 初期化関数
  */
 function init(){
-    lsDataSaveAndGet();
+    const savedata = storage.getItem('todolistData');
+    if(savedata) {
+        objTodoListDatas = savedata.datas;
+        idCounterNum = savedata.currentId;
+    } else {
+        objTodoListDatas = [];
+        idCounterNum = 0;
+    }
     if(objTodoListDatas.length > 0) {
         elTodolistListWrap.appendChild(elTodolist);
         updateList(objTodoListDatas);
@@ -281,7 +279,7 @@ function entryTodo(){
     // フロント画面に描写
     updateList (objTodoListDatas);
     // ローカルストレージに保存
-    lsDataSaveAndGet();
+    lsDataSave();
     // 入力フォームを空欄に戻す
     elTodoinputtext.value = '';
 }
@@ -294,37 +292,66 @@ elTodoinputtext.addEventListener('keydown', function(event){
     }
 });
 
-elTodolistListWrap.addEventListener(_click, function(e){
-    // 削除ボタン処理
-    // 親要素にイベントリスナー登録
-    if(e.target.type === 'button'){
-        // 削除ボタンのみ処理
-        const dataId = Number(e.target.parentNode.dataset.id);
-        const updateObjTodoListDatas = objTodoListDatas.filter(function(objTodoListData){
-            return objTodoListData.id != dataId;
-        });
-        if(updateObjTodoListDatas.length > 0){
-            updateList (updateObjTodoListDatas);
-        } else {
-            elTodolist.remove();
-            elTodolistListWrap.appendChild(noDataMessage);
-        }
-        objTodoListDatas = updateObjTodoListDatas;
-        lsDataSaveAndGet();
-        // console.log(localStorage.getItem('todolistData'));
+// 削除ボタン処理
+function onDeleteTodoClick(e){
+    e.preventDefault();
+    //console.log('削除');
+    const dataId = Number(e.target.parentNode.dataset.id);
+    const updateObjTodoListDatas = objTodoListDatas.filter(function(objTodoListData){
+        return objTodoListData.id != dataId;
+    });
+    if(updateObjTodoListDatas.length > 0){
+        updateList (updateObjTodoListDatas);
+    } else {
+        elTodolist.remove();
+        elTodolistListWrap.appendChild(noDataMessage);
     }
-});
+    objTodoListDatas = updateObjTodoListDatas;
+    lsDataSave();
+}
 
-elTodolistListWrap.addEventListener('change', function(e){
-    // 親要素にイベントリスナー登録
-    if(e.target.type === 'checkbox'){
-        // 完了チェック処理
-        // チェックボックスの親要素からIDを抽出
-        const dataId = Number(e.target.closest('.todolist__item').dataset.id);
-        // TodoデータからIDを探し、抽出
-        const findEl = objTodoListDatas.find(el => el.id === dataId);
-        // 抽出データのステータスを変更
-        findEl.status = findEl.status === false ? true : false;
-        lsDataSaveAndGet();
-    }
-});
+// 完了チェック処理
+function onCompleteCheck(e){
+    // チェックボックスの親要素からIDを抽出
+    const dataId = Number(e.target.closest('.todolist__item').dataset.id);
+    // TodoデータからIDを探し、抽出
+    const findEl = objTodoListDatas.find(el => el.id === dataId);
+    // 抽出データのステータスを変更
+    findEl.status = findEl.status === false ? true : false;
+    lsDataSave();
+}
+// elTodolistListWrap.addEventListener(_click, function(e){
+//     // 削除ボタン処理
+//     // 親要素にイベントリスナー登録
+//     if(e.target.type === 'button'){
+//         console.log('通過');
+//         // 削除ボタンのみ処理
+//         const dataId = Number(e.target.parentNode.dataset.id);
+//         const updateObjTodoListDatas = objTodoListDatas.filter(function(objTodoListData){
+//             return objTodoListData.id != dataId;
+//         });
+//         if(updateObjTodoListDatas.length > 0){
+//             updateList (updateObjTodoListDatas);
+//         } else {
+//             elTodolist.remove();
+//             elTodolistListWrap.appendChild(noDataMessage);
+//         }
+//         objTodoListDatas = updateObjTodoListDatas;
+//         lsDataSaveAndGet();
+//         // console.log(localStorage.getItem('todolistData'));
+//     }
+// });
+
+// elTodolistListWrap.addEventListener('change', function(e){
+//     // 親要素にイベントリスナー登録
+//     if(e.target.type === 'checkbox'){
+//         // 完了チェック処理
+//         // チェックボックスの親要素からIDを抽出
+//         const dataId = Number(e.target.closest('.todolist__item').dataset.id);
+//         // TodoデータからIDを探し、抽出
+//         const findEl = objTodoListDatas.find(el => el.id === dataId);
+//         // 抽出データのステータスを変更
+//         findEl.status = findEl.status === false ? true : false;
+//         lsDataSave();
+//     }
+// });
