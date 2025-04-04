@@ -160,6 +160,9 @@
         box-shadow: 0 0px 10px rgba(0,0,0,.13);
         color: var(--baseblue);
     }
+    span {
+        pointer-events: none;
+    }
 }
 
 .tab-contents-wrap {
