@@ -16,7 +16,7 @@ class WeatherDataProcessor{
     /**
      * APIから取得した現在の天気情報を加工し、出力する
      * @param {object} data API取得データ
-     * @returns 
+     * @returns {object} 加工後データ
      */
     setCurrentWeatherInfo(data){
         const infoObj = {
@@ -34,7 +34,7 @@ class WeatherDataProcessor{
      * 3時間ごとの各天気データを整形する
      * @param {string} hour 時間表記
      * @param {object} data API取得データ
-     * @returns 
+     * @returns {object} 加工後のデータ
      */
     setForecastWeatherInfo(hour, data){
         const infoObj = {
@@ -49,8 +49,8 @@ class WeatherDataProcessor{
 
     /**
      * 3時間ごとの天気を1日分ずつセットする
-     * @param {*} dataObj API取得データ
-     * @returns 
+     * @param {object} dataObj API取得データ
+     * @returns {object} 加工後のデータ
      */
     setDaysData(dataObj){
         const intervalHour = 3; // 何時間ごとのデータか
@@ -83,7 +83,7 @@ class WeatherDataProcessor{
     /**
      * 天気の種類でアイコンのパスを出力
      * @param {string} type :天気の種類
-     * @returns アイコンのパス
+     * @returns {string} アイコンのパス
      */
     mapWeatherCodeToIconPath(type){
         const path = 'assets/images/';
